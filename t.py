@@ -66,7 +66,7 @@ for j in glob.glob("*.1.APT3.1_Results.json"):
 						det = "None"
 					score += a[det]
 					detects.append(det)
-				res[t]["Steps"][s][v]["Detects"].append(u', '.join(detects))
+				res[t]["Steps"][s][v]["Detects"].append(u'-'.join(detects))
 			res[t]["Steps"][s][v]["Score"] = score
 			vendors[v]["Total Score"] += score
 
@@ -76,7 +76,7 @@ with open("out.json", "w") as ff:
 f = open("out.html", "w")
 f.write("<html><body><table border=\"1\" cellspacing=\"0\"><tr><th>"+u"</th><th>".join(["Technique", "Step", "Procedures"])+u"</th><th colspan=\"2\">"+"</th><th colspan=\"2\">".join(sorted(vendors.keys()))+"</th></tr>")
 for t in res.keys():
-	f.write("<tr><td rowspan=\""+str(res[t]["Steps count"])+"\"><b>"+res[t]["TechniqueName"]+"</b><br><i>"+res[t]["TacticGroup"]+"</i><br>(<a href=\"https://attack.mitre.org/techniques/"+t+"/\">"+t+"</a>)</td>")
+	f.write("<tr><td rowspan=\""+str(res[t]["Steps count"])+"\"><b>"+res[t]["TechniqueName"]+"</b><br><br><i>"+res[t]["TacticGroup"]+"</i><br><br>(<a href=\"https://attack.mitre.org/techniques/"+t+"/\">"+t+"</a>)</td>")
 	flag = 0
 	for s in res[t]["Steps"]:
 		if flag > 0:
@@ -84,7 +84,7 @@ for t in res.keys():
 		f.write("<td>"+s+"</td><td>"+res[t]["Steps"][s]["Procedure"]+"</td>")
 		for v in sorted(vendors.keys()):
 			bgcolor = get_color(res[t]["Steps"][s][v]["Score"])
-			f.write("<td>"+u"<br>".join(res[t]["Steps"][s][v]["Detects"])+"</td><td align=\"center\" bgcolor=\""+bgcolor+"\">"+str(res[t]["Steps"][s][v]["Score"])+"</td>")
+			f.write("<td>"+u"<br><br>".join(res[t]["Steps"][s][v]["Detects"])+"</td><td align=\"center\" bgcolor=\""+bgcolor+"\">"+str(res[t]["Steps"][s][v]["Score"])+"</td>")
 		f.write("</tr>")
 		flag += 1
 f.write("<tr><td colspan=\"3\"><b>TOTAL SCORE</b></td><td align=\"right\" colspan=\"2\"><b>"+u"</td><td align=\"right\" colspan=\"2\"><b>".join( map(lambda x: str(vendors[x]["Total Score"]), sorted(vendors.keys())) )+"</td></tr>"  )
