@@ -15,9 +15,9 @@ def get_color(score):
 		return "#FE2E2E" #red
 	if score <=29:
 		return "#F7FE2E" #yellow
-	if score <=49:
+	if score <60:
 		return "#40FF00" #light green
-	if score >=50:
+	if score >=60:
 		return "#31B404" #green
 
 res = dict()
