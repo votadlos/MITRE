@@ -24,13 +24,13 @@ res = dict()
 a = {
 	"None":0,
 	"Telemetry":10,
-	"Enrichment":20,
-	"Indicator of Compromise":25,
+	"Enrichment":15,
+	"Indicator of Compromise":20,
 	"General Behavior":30,
-	"Specific Behavior":50,
-	"Delayed":-2,
-	"Tainted":2,
-	"Configuration Change":-2
+	"Specific Behavior":60,
+	"Delayed":-5,
+	"Tainted":5,
+	"Configuration Change":-5
 }
 vendors = dict()
 
@@ -87,6 +87,7 @@ for t in res.keys():
 			f.write("<td>"+u"<br><br>".join(res[t]["Steps"][s][v]["Detects"])+"</td><td align=\"center\" bgcolor=\""+bgcolor+"\">"+str(res[t]["Steps"][s][v]["Score"])+"</td>")
 		f.write("</tr>")
 		flag += 1
+	f.write("<tr><td align=\"center\" bgcolor=\"#000000\">"+u"</td><td align=\"center\" bgcolor=\"#000000\">".join(["<font color=\"#FFFFFF\">Technique</font>", "<font color=\"#FFFFFF\">Step</font>", "<font color=\"#FFFFFF\">Procedures</font>"])+u"</td><td align=\"center\" colspan=\"2\" bgcolor=\"#000000\" >"+"</td><td align=\"center\" colspan=\"2\" bgcolor=\"#000000\" >".join(map(lambda x: "<font color=\"#FFFFFF\">"+x+"</font>",sorted(vendors.keys())))+"</td></tr>")
 f.write("<tr><td colspan=\"3\"><b>TOTAL SCORE</b></td><td align=\"right\" colspan=\"2\"><b>"+u"</td><td align=\"right\" colspan=\"2\"><b>".join( map(lambda x: str(vendors[x]["Total Score"]), sorted(vendors.keys())) )+"</td></tr>"  )
 f.write("</table></body></html>")
 f.close()
