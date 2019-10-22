@@ -24,7 +24,7 @@ def print_screenshots(h):
 	ret = ''
 	for k in h.keys():
 		if len(k) > 0:
-			ret += '<p><a href="https://attackevals.mitre.org/'+k.lower()+'.html" target="_blank"><small>'+h[k]+'</small></a></p>'
+			ret += '<p><a href="https://d1zq5d3dtjfcoj.cloudfront.net/' + k + '" target="_blank"><small>'+h[k]+'</small></a></p>'
 	return ret
 
 res = dict()
@@ -35,9 +35,9 @@ a = {
 	"Indicator of Compromise":20,
 	"General Behavior":30,
 	"Specific Behavior":60,
-	"Delayed":-5,
-	"Tainted":5,
-	"Configuration Change":-5
+	"Delayed":-3,
+	"Tainted":-3,
+	"Configuration Change":-3
 }
 vendors = dict()
 
